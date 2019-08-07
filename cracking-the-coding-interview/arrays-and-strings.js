@@ -23,3 +23,33 @@ function URLify(string, trueLength) {
 let sentence = 'hello my name is noah        '
 
 console.log(URLify(sentence, 21));
+
+//1.4 Palindrome Permutation
+/*
+Given a string, write a function to check if it is a permutation of a palindrome.
+Ignore casing and non-letter characters.
+*/
+
+function palindromePermutation(str) {
+  const string = str.split(' ').join('').toLowerCase();
+  const hash = {};
+
+  for (let i = 0; i < string.length; i++) {
+    if (hash.hasOwnProperty(string[i])) {
+      hash[string[i]]++;
+    } else {
+      hash[string[i]] = 1;
+    }
+  }
+
+  let oddCount = 0;
+  for (let key in hash) {
+    if (hash[key] % 2 !== 0) {
+      oddCount++
+    }
+  }
+
+  return oddCount <= 1
+}
+
+console.log(palindromePermutation('aabab'))
