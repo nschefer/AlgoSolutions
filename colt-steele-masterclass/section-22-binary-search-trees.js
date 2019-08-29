@@ -11,6 +11,7 @@ class BinarySearchTree {
     this.root = null;
   }
 
+  //O(log n)
   insert(val) {
     const newNode = new Node(val);
     if (!this.root) {
@@ -39,6 +40,7 @@ class BinarySearchTree {
   }
 
   //recursive
+  //O(log n)
   // find(val, node = this.root) {
   //   if (!node) return false;
   //   if (val === node.val) return true;
@@ -47,6 +49,7 @@ class BinarySearchTree {
   // }
 
   //iterative
+  //O(log n)
   find(val) {
     if (!this.root) return false;
     let current = this.root;
