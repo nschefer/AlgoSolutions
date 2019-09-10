@@ -61,16 +61,68 @@ class BinarySearchTree {
     return false
   }
 
+  BFS() {
+    if (!this.root) return undefined;
+    const queue = [];
+    const visited = [];
+    let node = this.root;
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      visited.push(node);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return visited;
+  }
+
+  DFSPreOrder() {
+    if (!this.root) return undefined;
+    const visited = [];
+    let current = this.root;
+    const dfs = node => {
+      visited.push(node.val);
+      if (node.left) dfs(node.left);
+      if (node.right) dfs(node.right);
+    }
+    dfs(current);
+    return visited;
+  }
+
+  DFSPostOrder() {
+    if (!this.root) return undefined;
+    const visited = [];
+    let current = this.root;
+    const dfs = node => {
+      if (node.left) dfs(node.left);
+      if (node.right) dfs(node.right);
+      visited.push(node.val);
+    }
+    dfs(current);
+    return visited;
+  }
+
+  DFSInOrder() {
+    if (!this.root) return undefined;
+    const visited = [];
+    let current = this.root;
+    const dfs = node => {
+      if (node.left) dfs(node.left);
+      visited.push(node.val);
+      if (node.right) dfs(node.right);
+    }
+    dfs(current);
+    return visited;
+  }
+
 }
 
 const tree = new BinarySearchTree;
 
 tree.insert(10);
-tree.insert(25);
-tree.insert(9)
-tree.insert(30)
-tree.insert(4)
-tree.insert(7)
-tree.insert(11)
-console.log(tree.find(11));
-console.log(tree)
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+console.log(tree.DFSInOrder());
